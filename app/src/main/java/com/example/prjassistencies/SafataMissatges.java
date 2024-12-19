@@ -1,0 +1,120 @@
+package com.example.prjassistencies;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+public class SafataMissatges extends AppCompatActivity {
+
+    private NotisAdapter adapter;
+    private RecyclerView recyclerView;
+    private SearchView searchView;
+    private TextView tornarButton, nextButton;
+    private ImageButton  buttonMessage;
+
+    private int currentPage = 1;
+    private static final int ITEMS_PER_PAGE = 10;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_safata_missatges);
+
+        initializeViews();
+        setupRecyclerView();
+        setupSearchView();
+        setupPagination();
+        loadNotifications(currentPage);
+        ImageButton buttonMessage = findViewById(R.id.buttonMessage);
+
+        buttonMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SafataMissatges.this, WMissatges.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void initializeViews() {
+        recyclerView = findViewById(R.id.notificationsRecyclerView);
+        searchView = findViewById(R.id.trobarView);
+        tornarButton = findViewById(R.id.tornarBoto);
+        nextButton = findViewById(R.id.nextButton);
+
+        setSupportActionBar(findViewById(R.id.toolbar));
+    }
+
+    private void setupRecyclerView() {
+        adapter = new NotisAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void setupSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query); // Filtra notificacions pel text introduït
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText); // Actualitza el filtre mentre escrius
+                return true;
+            }
+        });
+    }
+
+    private void setupPagination() {
+        tornarButton.setOnClickListener(v -> {
+            if (currentPage > 1) {
+                currentPage--;
+                loadNotifications(currentPage);
+            } else {
+                Toast.makeText(this, "Ja ets a la primera pàgina", Toast.LENGTH_SHORT).show();
+            }
+        });
+        nextButton.setOnClickListener(v -> {
+            currentPage++;
+            loadNotifications(currentPage);
+        });
+    }
+
+    private void loadNotifications(int page) {
+        List<NotisModel> allNotifications = NotisData.getSampleNotifications();
+        if (allNotifications != null && !allNotifications.isEmpty()) {
+            int startIndex = (page - 1) * ITEMS_PER_PAGE;
+            int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, allNotifications.size());
+
+            if (startIndex < allNotifications.size()) {
+                List<NotisModel> paginatedNotifications = allNotifications.subList(startIndex, endIndex);
+                adapter.setNotifications(paginatedNotifications);
+            } else {
+                Toast.makeText(this, "No hi ha més notificacions", Toast.LENGTH_SHORT).show();
+                currentPage--; // Torna a la pàgina anterior si no hi ha notificacions noves
+            }
+        } else {
+            Log.d("SafataEntrada", "No notifications found.");
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Safata d'inici" />
+    <item
+        android:id="@+id/nav_messages"
+        android:title="Missatges" />
+    <item
+        android:id="@+id/nav_attendance"
+        android:title="Assistències" />
+</menu>
