@@ -28,16 +28,18 @@
                 tools:layout="@layout/fragment_logo_app_prj" />
 
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="40sp"
-            android:textStyle="italic|bold"
-            android:textColor="#779FE5"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/app_name"
+        android:textColor="#779FE5"
+        android:textSize="40sp"
+        android:textStyle="italic|bold"
+        tools:ignore="TextContrastCheck" />
 
         <RelativeLayout
             android:layout_marginTop="30dp"

@@ -24,3 +24,6 @@ L'alumne pot accedir a la seva pròpia informació, però no pot realitzar cap a
 Per el contrari, el professorat pot accedir a les seves dades i modificar les assistències dels seus alumnes.
 
 ### Wireframe de l'aplicació
+
+![alt text](images_readme/image.png)
+
