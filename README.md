@@ -18,8 +18,7 @@ Tots els usuaris es registrem com a alumnes però els administradors donen permi
 Primerament, quan s’obre l’aplicació demana als usuaris iniciar sessió per tal d’accedir a tota la informació, sense tenir en compte si és alumne o professorat. 
 Es requereix un nom i una contrasenya per tal d’accedir si ja es té un compte, en el cas contrari només s’ha d’afegir un correu electrònic i confirmar la contrasenya dues vegades. 
 Una vegada que es troba dins, surt la safata d’entrada, que és una vista general amb últimes notificacions i un menú per tal d’accedir a altres apartats o funcionalitats. 
-Aquest menú es caracteritza per tenir opcions com safata d'entrada, assistències, entre altres. 
-Tant l'alumne com el professorat es poden accedir a aquesta vista, enviar missatges i revisar els mòduls que necessiten. 
+Aquest menú es caracteritza per tenir opcions com safata d'entrada, assistències, entre altres.  Tant l'alumne com el professorat es poden accedir a aquesta vista, enviar missatges i revisar els mòduls que necessiten. 
 L'alumne pot accedir a la seva pròpia informació, però no pot realitzar cap acció, com modificar les seves assistències. 
 Per el contrari, el professorat pot accedir a les seves dades i modificar les assistències dels seus alumnes.
 
@@ -27,3 +26,16 @@ Per el contrari, el professorat pot accedir a les seves dades i modificar les as
 
 ![alt text](images_readme/image.png)
 
+
+## Creació i desenvolupament de l’app Assistències
+
+Per desenvolupar aquesta aplicació es va tenir en compte uns requeriments bàsics per a la funcionalitat de la aplicació Assistències. Els quals són com a alumne usuari, poder consultar i veure la seva informació com a missatges classes i assistències que té. Com a professorat suari, poder veure els seus alumnes i poder modificarlos. Un punt a tenir en compte és que no hi ha administrador usuari, ja que s’executa tots els canvis directament a la base de dades, que només tenen accés els administradors.
+
+L’aplicació està dissenyada perquè l’usuari pugui accedir-hi iniciant sessió. Un cop l'usuari obre l’aplicació, se li demana que iniciï sessió (usuari i contrasenya). Si no té compte, té l’opció de crear-ne un nou. En aquest cas, l'usuari ha d’omplir un formulari amb les dades necessàries, com el seu correu electrònic, nom d'usuari i contrasenya, per crear un compte.
+
+NOTA: Aquesta apliacació es va desenvolupar en un temps molt limitat, funcionalitats no completes i estructura a millorar. Pendent de millora.
+
+# Més informació
+Per informació més detallada consulteu en aquest document:
+
+https://docs.google.com/document/d/1i8r-fE9A190US-r-d-sBDuRQj7i1GsngEfE9_bnIdIs/edit?usp=sharing
